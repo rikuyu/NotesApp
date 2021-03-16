@@ -21,7 +21,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private static final String TAG = "LoginRegisterActivity";
     int AUTHUI_REQUEST_CODE = 10001;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,14 +35,15 @@ public class LoginRegisterActivity extends AppCompatActivity {
     public void handleLoginRegister(View view) {
 
         List<AuthUI.IdpConfig> provider = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build()
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build()
         );
 
         Intent intent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(provider)
-                .setTosAndPrivacyPolicyUrls("あああ", "いいい")
-//                .setLogo(R.drawable.notes)
+                //.setTosAndPrivacyPolicyUrls("利用規約URL", "プライバシーポリシーURL")
+                //.setLogo(R.drawable.notes)
                 .setAlwaysShowSignInMethodScreen(true)
                 .build();
         startActivityForResult(intent, AUTHUI_REQUEST_CODE);
