@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
     }
 
     private void addMemo(String text) {
-        // ↓ onAuthStateChangedメソッドにより getCurrentUser == null なら startActivity
+        // ↓ onAuthStateChangedメソッドにより getCurrentUser == null なら startLoginActivity
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Memo memo = new Memo(text, false, new Timestamp(new Date()), userId);
 
@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
 
                 return true;
             case R.id.action_profile:
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
